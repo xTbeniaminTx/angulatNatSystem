@@ -12,6 +12,7 @@ export class TestBindingComponent implements OnInit {
   content = "";
   sexe = "F";
   color = "red";
+  monNom="";
   
   constructor() {
     this.compteur = 0;

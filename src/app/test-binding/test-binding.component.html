@@ -41,3 +41,8 @@
 <p-panel header="Créer une directive d'attribut">
   <h6 appHighlight [highlightColor]="color"> Je teste la directive d'attribut que j'ai créé</h6>
 </p-panel>
+
+<p-panel header="Directive structurelle : *ngIf">
+  Nom: <input type="text" [(ngModel)]="monNom">
+  <p *ngIf='!monNom' style="color:red">Le nom doit obligatoirement être renseigné</p>
+</p-panel>
