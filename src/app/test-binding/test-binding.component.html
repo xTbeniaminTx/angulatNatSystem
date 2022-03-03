@@ -71,5 +71,18 @@
 </p-panel>
 
 
+<p-panel header="Directive structurelle : *ngSwitch avec ng-container">
+  <ul>
+      <li *ngFor="let article of articles">
+          <ng-container [ngSwitch]="article.reference">
+              {{article.reference}} : {{article.prix}}
+              <b *ngSwitchCase="'pomme'">Fruit</b>
+              <b *ngSwitchDefault>Consommable</b>
+          </ng-container>
+      </li>
+  </ul>
+</p-panel>
+
+
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
