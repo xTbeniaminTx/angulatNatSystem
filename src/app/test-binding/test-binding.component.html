@@ -1,12 +1,18 @@
 <h1>Mon second composant</h1>
 <p class="sous_titre">Bienvenu
     {{nom}}</p>
+
 <p-panel header="Interpolation" [toggleable]="true">
     <p>Nous sommes le
         {{afficheMomentActuel()}}
     </p>
 </p-panel>
-
-<p-panel header="Liaison de propriétés">
-  <input [type]="inputType">
-</p-panel>
+<br>
+    <p-panel header="Liaison de propriétés" [toggleable]="true">
+        <input [type]="inputType"></p-panel>
+ <br>
+<p-panel header="Liaison d'évènements">
+    <p>Compteur:
+        {{compteur}}</p>
+    <button (click)="incrementeCompteur()">Clique ici</button>
+</p-panel>           
