@@ -9,6 +9,7 @@ export class TestBindingComponent implements OnInit {
   nom:string;
   inputType = "date";
   compteur: number;
+  content = "";
   
   constructor() {
     this.compteur = 0;

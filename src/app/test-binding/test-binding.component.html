@@ -14,5 +14,11 @@
 <p-panel header="Liaison d'évènements">
     <p>Compteur:
         {{compteur}}</p>
-    <button (click)="incrementeCompteur()">Clique ici</button>
-</p-panel>           
+    <button class="btn btn-primary" (click)="incrementeCompteur()">Clique ici</button>
+</p-panel>    
+<br>
+
+<p-panel header="Double data binding" [toggleable]="true">
+  <input type="text" [(ngModel)]="content">
+  <p>{{content}}</p>
+</p-panel>
