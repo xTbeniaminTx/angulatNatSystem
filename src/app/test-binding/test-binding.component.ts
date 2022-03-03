@@ -10,6 +10,8 @@ export class TestBindingComponent implements OnInit {
   inputType = "date";
   compteur: number;
   content = "";
+  sexe = "F";
+  color = "red";
   
   constructor() {
     this.compteur = 0;

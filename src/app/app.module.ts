@@ -8,12 +8,14 @@ import { TestBindingComponent } from './test-binding/test-binding.component';
 
 import { PanelModule } from 'primeng/panel';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    TestBindingComponent
+    TestBindingComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
