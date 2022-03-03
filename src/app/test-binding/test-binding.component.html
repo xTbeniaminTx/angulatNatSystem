@@ -10,79 +10,135 @@
 <br>
     <p-panel header="Liaison de propriétés" [toggleable]="true">
         <input [type]="inputType"></p-panel>
- <br>
-<p-panel header="Liaison d'évènements">
-    <p>Compteur:
-        {{compteur}}</p>
-    <button class="btn btn-primary" (click)="incrementeCompteur()">Clique ici</button>
-</p-panel>    
-<br>
+        <br>
+            <p-panel header="Liaison d'évènements">
+                <p>Compteur:
+                    {{compteur}}</p>
+                <button class="btn btn-primary" (click)="incrementeCompteur()">Clique ici</button>
+            </p-panel>
+            <br>
 
-<p-panel header="Double data binding" [toggleable]="true">
-  <input type="text" [(ngModel)]="content">
-  <p>{{content}}</p>
-</p-panel>
+                <p-panel header="Double data binding" [toggleable]="true">
+                    <input type="text" [(ngModel)]="content">
+                        <p>{{content}}</p>
+                    </p-panel>
 
-<br>
+                    <br>
 
-<p-panel header="Directive d'attribut : ngClass" [toggleable]="true">
-    Sexe:
-    <span>
-        <input type="radio" [(ngModel)]="sexe" value="F"/>
-        F
-        <input type="radio" [(ngModel)]="sexe" value="M"/>
-        M
-    </span>
-    <div [ngClass]="{'carreRose': sexe === 'F', 'carreBleu': sexe === 'M' }"></div>
-</p-panel>
+                        <p-panel header="Directive d'attribut : ngClass" [toggleable]="true">
+                            Sexe:
+                            <span>
+                                <input type="radio" [(ngModel)]="sexe" value="F"/>
+                                F
+                                <input type="radio" [(ngModel)]="sexe" value="M"/>
+                                M
+                            </span>
+                            <div [ngClass]="{'carreRose': sexe === 'F', 'carreBleu': sexe === 'M' }"></div>
+                        </p-panel>
 
-<p-panel header="Créer une directive d'attribut">
-  <h6 appHighlight> Je teste la directive d'attribut que j'ai créé</h6>
-</p-panel>
+                        <p-panel header="Créer une directive d'attribut">
+                            <h6 appHighlight="appHighlight">
+                                Je teste la directive d'attribut que j'ai créé</h6>
+                        </p-panel>
 
-<p-panel header="Créer une directive d'attribut">
-  <h6 appHighlight [highlightColor]="color"> Je teste la directive d'attribut que j'ai créé</h6>
-</p-panel>
+                        <p-panel header="Créer une directive d'attribut">
+                            <h6 appHighlight="appHighlight" [highlightColor]="color">
+                                Je teste la directive d'attribut que j'ai créé</h6>
+                        </p-panel>
 
-<p-panel header="Directive structurelle : *ngIf">
-    Nom:
-    <input type="text" [(ngModel)]="monNom">
-        <p *ngIf='!monNom' style="color:red">Le nom doit obligatoirement être renseigné</p>
-</p-panel>
+                        <p-panel header="Directive structurelle : *ngIf">
+                            Nom:
+                            <input type="text" [(ngModel)]="monNom">
+                                <p *ngIf='!monNom' style="color:red">Le nom doit obligatoirement être renseigné</p>
+                            </p-panel>
 
+                            <p-panel header="Directive structurelle : *ngFor">
+                                <ul>
+                                    <li *ngFor="let article of articles">{{article.reference}}
+                                        :
+                                        {{article.prix}}
+                                    </li>
+                                </ul>
+                            </p-panel>
 
-<p-panel header="Directive structurelle : *ngFor">
-  <ul>
-      <li *ngFor="let article of articles">{{article.reference}} : {{article.prix}}  </li>
-  </ul>
-</p-panel>
+                            <p-panel header="Créer une directive structurelle">
+                                <ng-container *appTimer="200">*</ng-container>
+                            </p-panel>
 
-<p-panel header="Directive structurelle : *ngSwitch">
-  <ul>
-      <li *ngFor="let article of articles">
-          <div [ngSwitch]="article.reference">
-              {{article.reference}} : {{article.prix}}
-              <b *ngSwitchCase="'pomme'">Fruit</b>
-              <b *ngSwitchCase="'bannanas'">Bananable</b>
-              <b *ngSwitchDefault>Consommable</b>
-          </div>
-      </li>
-  </ul>
-</p-panel>
+                            <p-panel header="Pipe personnalisé">
+                                <div style="margin-left: 20px;">
+                                    <h4>{{ "1234 5678 9123 5263" | cb}}</h4>
+                                </div>
+                            </p-panel>
 
+                            <p-panel >
+                                <ul>
+                                    <li>
 
-<p-panel header="Directive structurelle : *ngSwitch avec ng-container">
-  <ul>
-      <li *ngFor="let article of articles">
-          <ng-container [ngSwitch]="article.reference">
-              {{article.reference}} : {{article.prix}}
-              <b *ngSwitchCase="'pomme'">Fruit</b>
-              <b *ngSwitchDefault>Consommable</b>
-          </ng-container>
-      </li>
-  </ul>
-</p-panel>
+                                        {{myDate |  date:"dd-MMM-yyyy"}}
+                                    </li>
+                                </ul>
+                            </p-panel>
 
+                            <p-panel header="Pipe async avec une promise">
+                                <div style="margin-left: 20px;">
+                                    <h4>{{ name | async | lowercase}}</h4>
+                                </div>
+                            </p-panel>
 
+                            <p-panel header="date ">
+                                <p>
+                                    {{ myDate | date:"dd-MMM-yyyy"}}
+                                </p>
+                            </p-panel>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                            <p-panel header="date async">
+                                <p>
+                                    {{ lastUpdateAsync | async | date:"dd-MMM-yyyy"}}
+                                </p>
+                            </p-panel>
+
+                            <p-panel header="Exercice 1 : les pipes">
+                                <p>Mis à jour :
+                                    {{lastUpdateAsync | date: 'short' }}</p>
+                                <p>Mis à jour :
+                                    {{lastUpdateAsync | date: 'yMMMMEEEEd'}}</p>
+                                <p>Mis à jour :
+                                    {{lastUpdateAsync | date: 'yMMMMEEEEd' | uppercase}}</p>
+                            </p-panel>
+                            <p-panel header="Exercice 2 : le pipe async">
+                                <p>Mis à jour :
+                                    {{ lastUpdateAsync |async }}</p>
+                            </p-panel>
+
+                            <p-panel header="Communication entre composants">
+                                <div style="margin-top: 50px;">
+                                    <input type="text" [(ngModel)]="organe"/>
+                                    <button (click)="organes.push(organe)">Ajouter</button>
+                                </div>
+                                <div style="margin-top: 50px;">
+                                    <ul>
+
+                                        <app-organe *ngFor="let org of organes" [organe]="org"></app-organe>
+
+                                    </ul>
+                                </div>
+                            </p-panel>
+
+                            <br>
+                                <br>
+                                    <br>
+                                        <br>
+                                            <br>
+                                                <br>
+                                                    <br>
+                                                        <br>
+                                                            <br>
+                                                                <br>
+                                                                    <br>
+                                                                        <br>
+                                                                            <br>
+                                                                                <br>
+                                                                                    <br>
+                                                                                        <br>
+                                                                                            <br>

@@ -9,13 +9,22 @@ import { TestBindingComponent } from './test-binding/test-binding.component';
 import { PanelModule } from 'primeng/panel';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HighlightDirective } from './directives/highlight.directive';
+import { TimerDirective } from './directives/timer.directive';
+import { CbPipe } from './pipes/cb.pipe';
+import { OrganeComponent } from './organe/organe.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     TestBindingComponent,
-    HighlightDirective
+    HighlightDirective,
+    TimerDirective,
+    CbPipe,
+    OrganeComponent
+   
   ],
   imports: [
     BrowserModule,
