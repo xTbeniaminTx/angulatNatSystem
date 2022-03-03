@@ -26,12 +26,14 @@
 <br>
 
 <p-panel header="Directive d'attribut : ngClass" [toggleable]="true">
-  Sexe:
-  <span>
-      <input type="radio" [(ngModel)]="sexe" value="F"  /> F
-      <input type="radio" [(ngModel)]="sexe" value="M"  /> M
-  </span>
-  <div [ngClass]="{'carreRose': sexe === 'F', 'carreBleu': sexe === 'M' }"> </div>
+    Sexe:
+    <span>
+        <input type="radio" [(ngModel)]="sexe" value="F"/>
+        F
+        <input type="radio" [(ngModel)]="sexe" value="M"/>
+        M
+    </span>
+    <div [ngClass]="{'carreRose': sexe === 'F', 'carreBleu': sexe === 'M' }"></div>
 </p-panel>
 
 <p-panel header="Créer une directive d'attribut">
@@ -43,6 +45,18 @@
 </p-panel>
 
 <p-panel header="Directive structurelle : *ngIf">
-  Nom: <input type="text" [(ngModel)]="monNom">
-  <p *ngIf='!monNom' style="color:red">Le nom doit obligatoirement être renseigné</p>
+    Nom:
+    <input type="text" [(ngModel)]="monNom">
+        <p *ngIf='!monNom' style="color:red">Le nom doit obligatoirement être renseigné</p>
 </p-panel>
+
+
+<p-panel header="Directive structurelle : *ngFor">
+  <ul>
+      <li *ngFor="let article of articles">{{article.reference}} : {{article.prix}}  </li>
+  </ul>
+</p-panel>
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

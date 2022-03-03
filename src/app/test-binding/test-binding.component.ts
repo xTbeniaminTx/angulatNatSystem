@@ -13,6 +13,7 @@ export class TestBindingComponent implements OnInit {
   sexe = "F";
   color = "red";
   monNom="";
+  articles: any[] = [{ "reference": "pomme", "prix": 1.5 }, { "reference": "poire", "prix": 1.2 }, { "reference": "bannanas", "prix": 1.9 }];
   
   constructor() {
     this.compteur = 0;
