@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TestBindingComponent } from './test-binding/test-binding.component';
 
+import { PanelModule } from 'primeng/panel';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,7 +15,9 @@ import { TestBindingComponent } from './test-binding/test-binding.component';
     TestBindingComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    PanelModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

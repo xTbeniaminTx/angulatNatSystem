@@ -7,12 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestBindingComponent implements OnInit {
   nom:string
-
-  constructor() { 
-    this.nom="Angular"
+  inputType = "date";
+  constructor() {
+    setTimeout(() => {
+      this.inputType = "number";
+      this.nom="Angular";
+    }, 3000);
   }
 
+
   ngOnInit(): void {
+  }
+
+  public afficheMomentActuel(): string {
+    let auj = new Date();
+    return auj.toLocaleDateString('fr-FR') + " " + auj.toLocaleTimeString();
   }
 
 

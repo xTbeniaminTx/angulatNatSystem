@@ -1,3 +1,12 @@
-
 <h1>Mon second composant</h1>
-<p class="sous_titre">Bienvenu kjfdsmgsjdqmghdsqmlhgdmslqhgdml {{nom}}</p>
+<p class="sous_titre">Bienvenu
+    {{nom}}</p>
+<p-panel header="Interpolation" [toggleable]="true">
+    <p>Nous sommes le
+        {{afficheMomentActuel()}}
+    </p>
+</p-panel>
+
+<p-panel header="Liaison de propriétés">
+  <input [type]="inputType">
+</p-panel>
