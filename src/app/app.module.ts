@@ -20,10 +20,11 @@ import { ExamplesComponent } from './examples/examples.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './error/error.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
   {path: 'examples', component: ExamplesComponent},
-  {path: 'exercises', component: ExercisesComponent},
+  {path: 'exercises', canActivate: [AuthGuardService], component: ExercisesComponent},
   {path: 'auth', component: AuthComponent},
   {path: '', component: ExamplesComponent},
   {path: 'not-found', component: ErrorComponent},
