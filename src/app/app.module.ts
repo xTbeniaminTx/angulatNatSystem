@@ -18,8 +18,17 @@ import { PanierService } from './services/panier.service';
 import { AuthComponent } from './auth/auth.component';
 import { ExamplesComponent } from './examples/examples.component';
 import { ExercisesComponent } from './exercises/exercises.component';
+import { RouterModule, Routes } from '@angular/router';
+import { ErrorComponent } from './error/error.component';
 
-
+const appRoutes: Routes = [
+  {path: 'examples', component: ExamplesComponent},
+  {path: 'exercises', component: ExercisesComponent},
+  {path: 'auth', component: AuthComponent},
+  {path: '', component: ExamplesComponent},
+  {path: 'not-found', component: ErrorComponent},
+  {path: '**', redirectTo: 'not-found'}
+]
 
 @NgModule({
   declarations: [
@@ -34,15 +43,17 @@ import { ExercisesComponent } from './exercises/exercises.component';
     PanierComponent,
     AuthComponent,
     ExamplesComponent,
-    ExercisesComponent
+    ExercisesComponent,
+    ErrorComponent
    
   ],
   imports: [
     BrowserModule,
     PanelModule,
     BrowserAnimationsModule,
-    FormsModule
-    
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
+
   ],
   providers: [PanierService],
   bootstrap: [AppComponent]
