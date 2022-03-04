@@ -15,6 +15,9 @@ import { OrganeComponent } from './organe/organe.component';
 import { AddComponent } from './add/add.component';
 import { PanierComponent } from './panier/panier.component';
 import { PanierService } from './services/panier.service';
+import { AuthComponent } from './auth/auth.component';
+import { ExamplesComponent } from './examples/examples.component';
+import { ExercisesComponent } from './exercises/exercises.component';
 
 
 
@@ -28,7 +31,10 @@ import { PanierService } from './services/panier.service';
     CbPipe,
     OrganeComponent,
     AddComponent,
-    PanierComponent
+    PanierComponent,
+    AuthComponent,
+    ExamplesComponent,
+    ExercisesComponent
    
   ],
   imports: [

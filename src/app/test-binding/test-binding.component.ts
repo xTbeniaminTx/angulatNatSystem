@@ -60,4 +60,8 @@ export class TestBindingComponent implements OnInit {
         this.compteur++;
     }
 
+    deleteOrgane(organe) {
+        this.organes.splice(this.organe.indexOf(organe), 1);
+    }
+
 }
