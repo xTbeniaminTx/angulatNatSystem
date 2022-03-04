@@ -97,7 +97,7 @@
                                     {{ lastUpdateAsync | async | date:"dd-MMM-yyyy"}}
                                 </p>
                             </p-panel>
-
+<!-- 
                             <p-panel header="Exercice 1 : les pipes">
                                 <p>Mis à jour :
                                     {{lastUpdateAsync | date: 'short' }}</p>
@@ -105,7 +105,7 @@
                                     {{lastUpdateAsync | date: 'yMMMMEEEEd'}}</p>
                                 <p>Mis à jour :
                                     {{lastUpdateAsync | date: 'yMMMMEEEEd' | uppercase}}</p>
-                            </p-panel>
+                            </p-panel> -->
                             <p-panel header="Exercice 2 : le pipe async">
                                 <p>Mis à jour :
                                     {{ lastUpdateAsync |async }}</p>
@@ -124,6 +124,17 @@
                                     </ul>
                                 </div>
                             </p-panel>
+
+
+                            <p-panel header="Les services">
+                                <div style="width: 200px;">
+                                    <div>
+                                        <app-add></app-add>
+                                        <app-panier></app-panier>
+                                    </div>
+                                </div>
+                            </p-panel>
+
 
                             <br>
                                 <br>

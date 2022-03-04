@@ -25,6 +25,7 @@ export class TestBindingComponent implements OnInit {
     ];
     organe:string;
     organes:string[]=[];
+   
     myDate: Date = new Date();
     lastUpdateAsync = new Promise((resolve, reject) => {
         const date = new Date();

@@ -12,6 +12,9 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { TimerDirective } from './directives/timer.directive';
 import { CbPipe } from './pipes/cb.pipe';
 import { OrganeComponent } from './organe/organe.component';
+import { AddComponent } from './add/add.component';
+import { PanierComponent } from './panier/panier.component';
+import { PanierService } from './services/panier.service';
 
 
 
@@ -23,7 +26,9 @@ import { OrganeComponent } from './organe/organe.component';
     HighlightDirective,
     TimerDirective,
     CbPipe,
-    OrganeComponent
+    OrganeComponent,
+    AddComponent,
+    PanierComponent
    
   ],
   imports: [
@@ -33,7 +38,7 @@ import { OrganeComponent } from './organe/organe.component';
     FormsModule
     
   ],
-  providers: [],
+  providers: [PanierService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
