@@ -1,0 +1,29 @@
+<p-panel header="Formulaire d'inscription">
+  <div class="card">
+    <form  [formGroup]="userForm">
+      
+
+        <span class="p-float-label">
+            <input id="lastName" class="form-control" formControlName="lastName" pInputText>
+            <label for="lastName">Nom</label>
+        </span>
+        <span class="p-float-label">
+            <input id="firstName" class="form-control" formControlName="firstName" pInputText>
+            <label for="firstName">Prénom</label>
+        </span>
+       
+       
+        <div>
+            <p-dropdown [style]="{'font-size':'14px'}" formControlName="drinkPreference" id="drinkPreference"
+                [options]="drinks" placeholder="Quelle boisson préférez-vous?" appendTo="body">
+            </p-dropdown>
+        </div>
+        <div style="margin-top: 10px;">
+            <button type="submit" class="btn btn-primary" >Soumettre</button>
+        </div>
+
+
+      
+    </form>
+  </div>
+</p-panel>

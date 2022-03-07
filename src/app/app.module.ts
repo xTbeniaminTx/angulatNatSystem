@@ -70,7 +70,19 @@ import {
 import {
   UserService
 } from './services/user.service';
-import { UserListComponent } from './user-list/user-list.component';
+import {
+  UserListComponent
+} from './user-list/user-list.component';
+import {
+  NewUserComponent
+} from './new-user/new-user.component';
+import {
+  InputTextModule
+} from 'primeng/inputtext';
+import {
+  DropdownModule
+} from 'primeng/dropdown';
+
 
 const appRoutes: Routes = [{
     path: 'examples',
@@ -88,6 +100,10 @@ const appRoutes: Routes = [{
   {
     path: 'users',
     component: UserListComponent
+  },
+  {
+    path: 'new-user',
+    component: NewUserComponent
   },
   {
     path: '',
@@ -118,7 +134,8 @@ const appRoutes: Routes = [{
     ExamplesComponent,
     ExercisesComponent,
     ErrorComponent,
-    UserListComponent
+    UserListComponent,
+    NewUserComponent
 
   ],
   imports: [
@@ -127,7 +144,9 @@ const appRoutes: Routes = [{
     BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InputTextModule,
+    DropdownModule
 
   ],
   providers: [
