@@ -1,7 +1,10 @@
 import {
   Injectable
 } from '@angular/core';
-import { Subject } from 'rxjs';
+import {
+  Subject,
+  Subscription
+} from 'rxjs';
 import {
   User
 } from '../models/User.model';
@@ -12,16 +15,24 @@ import {
 })
 export class UserService {
 
-  users: User[];
-  userSubject: Subject<string>;
-
   constructor() {}
+
+  users: User[] = [
+    new User('Bob', 'Alex', 'will@will.com', 'café latte', ['coder', 'boire du cafe'])
+  ];
+  userSubject = new Subject < User[] > ();
+ 
+  emitUsers() {
+    this.userSubject.next(this.users.slice());
+  }
 
   addUser(user: User) {
     this.users.push(user)
+    this.emitUsers();
   }
 
-  users2 = new User('Bob', 'Alex', 'will@will.com', 'café latte', ['coder', 'boire du cafe'])
+
+
 
 
 }
