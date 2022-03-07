@@ -1,6 +1,6 @@
 <p-panel header="Formulaire d'inscription">
   <div class="card">
-    <form  [formGroup]="userForm">
+    <form  [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
       
 
         <span class="p-float-label">
