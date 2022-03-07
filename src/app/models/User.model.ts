@@ -1,8 +1,8 @@
 export class User {
   constructor(
-    firstName: string,
-    lastName: string,
-    email: string,
-    drinkPreference: string,
-    hobbies ? : string[]) {}
+    public firstName: string,
+    public lastName: string,
+    public email: string,
+    public drinkPreference: string,
+    public hobbies ? : string[]) {}
 }

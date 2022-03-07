@@ -70,6 +70,7 @@ import {
 import {
   UserService
 } from './services/user.service';
+import { UserListComponent } from './user-list/user-list.component';
 
 const appRoutes: Routes = [{
     path: 'examples',
@@ -83,6 +84,10 @@ const appRoutes: Routes = [{
   {
     path: 'auth',
     component: AuthComponent
+  },
+  {
+    path: 'users',
+    component: UserListComponent
   },
   {
     path: '',
@@ -112,7 +117,8 @@ const appRoutes: Routes = [{
     AuthComponent,
     ExamplesComponent,
     ExercisesComponent,
-    ErrorComponent
+    ErrorComponent,
+    UserListComponent
 
   ],
   imports: [
