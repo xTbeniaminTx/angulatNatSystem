@@ -12,8 +12,10 @@
         <input [type]="inputType"></p-panel>
         <br>
             <p-panel header="Liaison d'évènements">
-                <p>Compteur:
-                    {{compteur}}</p>
+                <p>Compteur auto:
+                    {{counter}} secondes</p>
+                    <p>Compteur manuel:
+                        {{compteur}}</p>
                 <button class="btn btn-primary" (click)="incrementeCompteur()">Clique ici</button>
             </p-panel>
             <br>
@@ -132,6 +134,15 @@
                                     <div>
                                         <app-add></app-add>
                                         <app-panier></app-panier>
+                                    </div>
+                                </div>
+                            </p-panel>
+
+                            
+                            <p-panel header="counter">
+                                <div style="width: 200px;">
+                                    <div>
+                                       
                                     </div>
                                 </div>
                             </p-panel>
