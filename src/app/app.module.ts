@@ -67,6 +67,9 @@ import {
 import {
   ReactiveFormsModule
 } from '@angular/forms'
+import {
+  UserService
+} from './services/user.service';
 
 const appRoutes: Routes = [{
     path: 'examples',
@@ -121,7 +124,10 @@ const appRoutes: Routes = [{
     ReactiveFormsModule
 
   ],
-  providers: [PanierService],
+  providers: [
+    PanierService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
