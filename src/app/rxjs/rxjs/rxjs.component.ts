@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RxjsService } from '../services/rxjs.service';
+import {Observable} from 'rxjs';
+import {RegionModel} from '../model/region.model';
 
 @Component({
   selector: 'app-rxjs',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RxjsComponent implements OnInit {
 
-  constructor() { }
+  regionList$: Observable<RegionModel[]> = this._rxjsService.getAllRegions();
+
+  constructor(
+    // tslint:disable-next-line:variable-name
+    private _rxjsService: RxjsService
+  ) { }
 
   ngOnInit(): void {
   }
+
+  changeDeptList(event: RegionModel): void {}
 
 }

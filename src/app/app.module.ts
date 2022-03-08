@@ -86,6 +86,7 @@ import {TableModule} from 'primeng/table';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { AppRoutingModule } from './app-routing.module';
+import { RxjsModule } from './rxjs/rxjs/rxjs.module';
 
 
 
@@ -121,7 +122,8 @@ import { AppRoutingModule } from './app-routing.module';
     TableModule,
     HttpClientModule,
     ButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RxjsModule
 
   ],
   providers: [

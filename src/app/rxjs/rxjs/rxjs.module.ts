@@ -14,6 +14,9 @@ import {
 import {
   RxjsComponent
 } from './rxjs.component';
+import { PanelModule } from 'primeng/panel';
+import { HttpClientModule } from '@angular/common/http';
+import {DropdownModule} from 'primeng/dropdown';
 
 const routes: Routes = [{
   path: '',
@@ -22,10 +25,13 @@ const routes: Routes = [{
 
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    RxjsRoutingModule
-  ]
+  declarations: [RxjsComponent],
+    imports: [
+        CommonModule,
+        RxjsRoutingModule,
+        PanelModule,
+        HttpClientModule,
+        DropdownModule
+    ]
 })
 export class RxjsModule {}

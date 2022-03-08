@@ -1,1 +1,17 @@
-<p>rxjs works!</p>
+<p-panel header="TESTSETSETSTSTSETSE">
+  <div class="p-grid">
+    <div class="p-col-4">
+      <p-dropdown placeholder="Choix region"
+                  [options]="regionList$ | async"
+                  (onChange)="changeDeptList($event)"
+                  optionLabel="nom"
+      >
+
+      </p-dropdown>
+
+
+    </div>
+    <div class="p-col-4"></div>
+    <div class="p-col-4"></div>
+  </div>
+</p-panel>
