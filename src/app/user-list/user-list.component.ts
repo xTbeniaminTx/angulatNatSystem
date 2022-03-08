@@ -3,6 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 import {
+  Observable,
   Subject,
   Subscription
 } from 'rxjs';
@@ -22,6 +23,7 @@ import {
 export class UserListComponent implements OnInit {
   userSubscription: Subscription;
   users: User[];
+  users$: Observable<User[]>;
   userSubject = new Subject < User[] > ();
   userService: UserService;
   cols: Partial<{field: string, header: string}>[];
@@ -35,7 +37,8 @@ export class UserListComponent implements OnInit {
       this.users = users
     })
     this.userService.emitUsers();
-    // console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXX',this.users);
+    
+    this.users$ = this.userService.getUserList();
 
     this.cols = [
       {field: 'firstName', header: 'Prenom'},

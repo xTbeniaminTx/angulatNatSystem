@@ -1,9 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import {
   Injectable
 } from '@angular/core';
 import {
+  Observable,
   Subject
 } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import {
   User
 } from '../models/User.model';
@@ -14,7 +17,9 @@ import {
 })
 export class UserService {
 
-  constructor() {}
+  baseUrlUser= environment.user;
+
+  constructor(private http: HttpClient) {}
 
   users: User[] = [
     new User('Bob', 'bobina', 'bobina@will.com', 'café latte', ['coder', 'boire du cafe latte']),
@@ -29,6 +34,10 @@ export class UserService {
   addUser(user: User) {
     this.users.push(user)
     this.emitUsers();
+  }
+
+  getUserList(): Observable<User[]> {
+    return this.http.get(this.baseUrlUser+'') as Observable<User[]>;
   }
 
 }

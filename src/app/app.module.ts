@@ -82,7 +82,8 @@ import {
 import {
   DropdownModule
 } from 'primeng/dropdown';
-import {TableModule} from 'primeng/table'
+import {TableModule} from 'primeng/table';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 
 const appRoutes: Routes = [{
@@ -148,12 +149,14 @@ const appRoutes: Routes = [{
     ReactiveFormsModule,
     InputTextModule,
     DropdownModule,
-    TableModule
+    TableModule,
+    HttpClientModule
 
   ],
   providers: [
     PanierService,
-    UserService
+    UserService,
+    HttpClient
   ],
   bootstrap: [AppComponent]
 })
