@@ -3,6 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 import {
+  FormArray,
   FormControl,
   FormGroup,
   Validators
@@ -22,6 +23,7 @@ export class NewUserComponent implements OnInit {
 
   userForm: FormGroup;
   drinks: string[] = ['late', 'coke', 'lait'];
+  hobbies: FormArray[];
 
   constructor(private userService: UserService) {
 
@@ -36,7 +38,8 @@ export class NewUserComponent implements OnInit {
       firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       lastName: new FormControl('', [Validators.minLength(3)]),
       email: new FormControl('', [Validators.email]),
-      drinkPreference: new FormControl(this.drinks)
+      drinkPreference: new FormControl(this.drinks),
+      hobbies: new FormArray([])
     })
   }
 
@@ -53,6 +56,16 @@ export class NewUserComponent implements OnInit {
     this.userService.addUser(newUser);
     console.log(newUser);
 
+  }
+
+
+  getHobbies(): FormArray {
+    return this.userForm.get('hobbies') as FormArray;
+  }
+
+  onAddHobby() {
+    const newHobbyControl = new FormControl(null, Validators.required);
+    this.getHobbies().push(newHobbyControl);
   }
 
 }
