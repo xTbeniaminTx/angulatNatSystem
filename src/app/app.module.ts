@@ -84,42 +84,12 @@ import {
 } from 'primeng/dropdown';
 import {TableModule} from 'primeng/table';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { ButtonModule } from 'primeng/button';
+import { AppRoutingModule } from './app-routing.module';
 
 
-const appRoutes: Routes = [{
-    path: 'examples',
-    component: ExamplesComponent
-  },
-  {
-    path: 'exercises',
-    canActivate: [AuthGuardService],
-    component: ExercisesComponent
-  },
-  {
-    path: 'auth',
-    component: AuthComponent
-  },
-  {
-    path: 'users',
-    component: UserListComponent
-  },
-  {
-    path: 'new-user',
-    component: NewUserComponent
-  },
-  {
-    path: '',
-    component: ExamplesComponent
-  },
-  {
-    path: 'not-found',
-    component: ErrorComponent
-  },
-  {
-    path: '**',
-    redirectTo: 'not-found'
-  }
-]
+
+
 
 @NgModule({
   declarations: [
@@ -145,12 +115,13 @@ const appRoutes: Routes = [{
     PanelModule,
     BrowserAnimationsModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     InputTextModule,
     DropdownModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
+    ButtonModule,
+    AppRoutingModule
 
   ],
   providers: [

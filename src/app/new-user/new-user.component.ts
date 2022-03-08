@@ -54,6 +54,7 @@ export class NewUserComponent implements OnInit {
     );
 
     this.userService.addUser(newUser);
+    this.userService.createUser(newUser).subscribe(x => console.log(x));
     console.log(newUser);
 
   }

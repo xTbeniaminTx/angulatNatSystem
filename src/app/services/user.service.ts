@@ -40,4 +40,8 @@ export class UserService {
     return this.http.get(this.baseUrlUser+'') as Observable<User[]>;
   }
 
+  createUser(user: User): Observable<User> {
+    return this.http.post(this.baseUrlUser ,user) as Observable<User>;
+  }
+
 }
