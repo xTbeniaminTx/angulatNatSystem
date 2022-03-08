@@ -4,7 +4,8 @@ import {
 } from '@angular/core';
 import {
   FormControl,
-  FormGroup
+  FormGroup,
+  Validators
 } from '@angular/forms';
 import { from } from 'rxjs';
 import {
@@ -32,9 +33,9 @@ export class NewUserComponent implements OnInit {
 
   initForm() {
     this.userForm = new FormGroup({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      email: new FormControl(''),
+      firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      lastName: new FormControl('', [Validators.minLength(3)]),
+      email: new FormControl('', [Validators.email]),
       drinkPreference: new FormControl(this.drinks)
     })
   }
