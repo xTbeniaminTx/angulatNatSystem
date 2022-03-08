@@ -82,6 +82,7 @@ import {
 import {
   DropdownModule
 } from 'primeng/dropdown';
+import {TableModule} from 'primeng/table'
 
 
 const appRoutes: Routes = [{
@@ -146,7 +147,8 @@ const appRoutes: Routes = [{
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    TableModule
 
   ],
   providers: [

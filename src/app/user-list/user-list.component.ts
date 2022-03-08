@@ -13,6 +13,7 @@ import {
   UserService
 } from '../services/user.service';
 
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -23,6 +24,7 @@ export class UserListComponent implements OnInit {
   users: User[];
   userSubject = new Subject < User[] > ();
   userService: UserService;
+  cols: Partial<{field: string, header: string}>[];
 
   constructor(userService: UserService) {
     this.userService = userService;
@@ -34,6 +36,13 @@ export class UserListComponent implements OnInit {
     })
     this.userService.emitUsers();
     // console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXX',this.users);
+
+    this.cols = [
+      {field: 'firstName', header: 'Prenom'},
+      {field: 'lastName', header: 'Nom'},
+      {field: 'email', header: 'Email'},
+      {field: 'drinkPreference', header: 'boisson préférée'},
+    ];
   }
 
   ngOnDestroy() {

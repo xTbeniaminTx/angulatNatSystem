@@ -9,3 +9,25 @@
     </p>
   </li>
 </ul>
+
+<h3 class="first">Tableau utilisateurs</h3>
+<p-table [columns]="cols" [value]="users">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+        {{col.header}}
+        <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate in DESC" ariaLabelAsc="Activate in ASC"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      <td *ngFor="let col of columns">
+        <p>{{rowData[col.field]}}</p>
+       
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<br><br><br><br><br><br><br><br><br><br>
