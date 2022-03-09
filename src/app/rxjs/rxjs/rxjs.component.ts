@@ -15,7 +15,7 @@ export class RxjsComponent implements OnInit {
 
   regionList$: Observable<RegionModel[]> = this._rxjsService.getAllRegions();
   departmentList$: Observable<DepartementModel[]>;
-  communeList$: Observable<{ code: string; codesPostaux: string; codeRegion: string; codeDepartement: string; nom: string; population: number }[]>;
+  communeList$: Observable<CommuneModel[]>;
   cols: Partial<{ field: string, header: string }>[] = [
     {field: 'code', header: 'Code'},
     {field: 'codeDepartement', header: 'Code departement'},
@@ -42,7 +42,7 @@ export class RxjsComponent implements OnInit {
     ).pipe(
       map((communes: CommuneModel[]) =>
         communes.map((commune: CommuneModel) => {
-            return {...commune, codesPostaux: commune.codesPostaux.join(' - ')};
+            return {...commune, codesPostaux : [ commune.codesPostaux.join(' - ')]};
           }
         )
       )

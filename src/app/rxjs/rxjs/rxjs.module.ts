@@ -7,22 +7,19 @@ import {
 
 import {
   RxjsRoutingModule
-} from '../../rxjs-routing.module';
+} from './rxjs-routing.module';
 import {
   Routes
 } from '@angular/router';
 import {
   RxjsComponent
 } from './rxjs.component';
-import { PanelModule } from 'primeng/panel';
-import { HttpClientModule } from '@angular/common/http';
+import {PanelModule} from 'primeng/panel';
+import {HttpClientModule} from '@angular/common/http';
 import {DropdownModule} from 'primeng/dropdown';
 import {TableModule} from 'primeng/table';
+import {CommuneDetailComponent} from '../commune-detail/commune-detail.component';
 
-const routes: Routes = [{
-  path: '',
-  component: RxjsComponent
-}];
 
 
 @NgModule({
@@ -36,4 +33,5 @@ const routes: Routes = [{
     TableModule
   ]
 })
-export class RxjsModule {}
+export class RxjsModule {
+}

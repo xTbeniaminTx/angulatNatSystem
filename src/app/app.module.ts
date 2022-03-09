@@ -66,7 +66,7 @@ import {
 } from './services/auth-guard.service';
 import {
   ReactiveFormsModule
-} from '@angular/forms'
+} from '@angular/forms';
 import {
   UserService
 } from './services/user.service';
@@ -84,12 +84,10 @@ import {
 } from 'primeng/dropdown';
 import {TableModule} from 'primeng/table';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import { ButtonModule } from 'primeng/button';
-import { AppRoutingModule } from './app-routing.module';
-import { RxjsModule } from './rxjs/rxjs/rxjs.module';
-
-
-
+import {ButtonModule} from 'primeng/button';
+import {AppRoutingModule} from './app-routing.module';
+import {RxjsModule} from './rxjs/rxjs/rxjs.module';
+import { CommuneDetailComponent } from './rxjs/commune-detail/commune-detail.component';
 
 
 @NgModule({
@@ -108,7 +106,8 @@ import { RxjsModule } from './rxjs/rxjs/rxjs.module';
     ExercisesComponent,
     ErrorComponent,
     UserListComponent,
-    NewUserComponent
+    NewUserComponent,
+    CommuneDetailComponent
 
   ],
   imports: [
@@ -122,8 +121,8 @@ import { RxjsModule } from './rxjs/rxjs/rxjs.module';
     TableModule,
     HttpClientModule,
     ButtonModule,
-    AppRoutingModule,
-    RxjsModule
+    AppRoutingModule
+
 
   ],
   providers: [
@@ -133,4 +132,5 @@ import { RxjsModule } from './rxjs/rxjs/rxjs.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

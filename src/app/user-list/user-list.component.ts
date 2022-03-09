@@ -33,11 +33,11 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userSubscription = this.userService.userSubject.subscribe((users:User[]) => {
-      this.users = users
-    })
+    this.userSubscription = this.userService.userSubject.subscribe((users: User[]) => {
+      this.users = users;
+    });
     this.userService.emitUsers();
-    
+
     this.users$ = this.userService.getUserList();
 
     this.cols = [

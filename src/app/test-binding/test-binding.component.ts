@@ -3,7 +3,7 @@ import {
   OnInit,
   OnDestroy
 } from '@angular/core';
-import { FormGroup,FormControl } from '@angular/forms';
+import {FormGroup, FormControl} from '@angular/forms';
 import {
   BehaviorSubject,
   from,
@@ -20,9 +20,9 @@ import {
 
 
 interface User {
-  name: string,
-    age: number,
-    email: string
+  name: string;
+  age: number;
+  email: string;
 }
 
 @Component({
@@ -31,29 +31,29 @@ interface User {
   styleUrls: ['./test-binding.component.scss']
 })
 export class TestBindingComponent implements OnInit, OnDestroy {
-    myForm: FormGroup;
+  myForm: FormGroup;
   nom: string;
-  inputType = "date";
+  inputType = 'date';
   compteur: number;
-  content = "";
-  sexe = "F";
-  color = "red";
-  monNom = "";
+  content = '';
+  sexe = 'F';
+  color = 'red';
+  monNom = '';
   articles: any[] = [{
-    "reference": "pomme",
-    "prix": 1.5
+    reference: 'pomme',
+    prix: 1.5
   }, {
-    "reference": "poire",
-    "prix": 1.2
+    reference: 'poire',
+    prix: 1.2
   }, {
-    "reference": "bannanas",
-    "prix": 1.9
+    reference: 'bananas',
+    prix: 1.9
   }];
   organe: string;
   organes: string[] = [];
 
-  obs$: Observable < any > ;
-  counter$: Observable < any > ;
+  obs$: Observable<any>;
+  counter$: Observable<any>;
   sub: Subscription;
   subCounter: Subscription;
 
@@ -61,10 +61,10 @@ export class TestBindingComponent implements OnInit, OnDestroy {
 
   counter: number;
 
-  subj = new Subject < number > ();
-  subj2 = new BehaviorSubject < number > (0);
+  subj = new Subject<number>();
+  subj2 = new BehaviorSubject<number>(0);
 
-  subjectPipe = new BehaviorSubject < User > ({
+  subjectPipe = new BehaviorSubject<User>({
     name: 'jean',
     age: 28,
     email: 'jean@gmail.com'
@@ -72,8 +72,7 @@ export class TestBindingComponent implements OnInit, OnDestroy {
 
   sub1 = this.subjectPipe.subscribe((x: User) => {
     console.log('[sub1] : ', x);
-  })
-
+  });
 
 
   myDate: Date = new Date();
@@ -83,25 +82,25 @@ export class TestBindingComponent implements OnInit, OnDestroy {
       resolve(date);
     }, 2000);
   });
-  name: Promise < string > ;
+  name: Promise<string>;
 
   constructor() {
     this.compteur = 0;
     setTimeout(() => {
-      this.inputType = "number";
-      this.nom = "Angular";
+      this.inputType = 'number';
+      this.nom = 'Angular';
     }, 10000);
   }
 
   ngOnInit(): void {
 
     this.myForm = new FormGroup({
-        username: new FormControl(''),
-        email: new FormControl(''),
-        password: new FormControl('')
+      username: new FormControl(''),
+      email: new FormControl(''),
+      password: new FormControl('')
     });
 
-    console.log("myForm:", this.myForm)
+    console.log('myForm:', this.myForm);
 
 
     const sub2 = this.subjectPipe.pipe(
@@ -110,41 +109,39 @@ export class TestBindingComponent implements OnInit, OnDestroy {
       })
     ).subscribe((email: string) => {
       console.log('exemple utilisation de map : ', email);
-    })
+    });
 
     const sub3 = this.subjectPipe.pipe(
       filter((user: User) => {
-        return true; //essayer avec return false  
+        return true; // essayer avec return false
       }),
       map((user: User) => {
         return user.email;
       })
     ).subscribe((email: string) => {
       console.log('exemple utilisation de filter : ', email);
-    })
+    });
 
     const Array$ = from([1, 2, 3, 4, 5]);
     const resultFilter = Array$.pipe(
       filter(x => x < 4)
     );
-    console.log("filter",resultFilter); // donne [1, 2, 3]
-
-
+    console.log('filter', resultFilter); // donne [1, 2, 3]
 
 
     this.name = new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve('Paul');
-      }, 3000)
-    })
+      }, 3000);
+    });
 
 
-    this.obs$ = new Observable((observer: Observer < any > ) => {
+    this.obs$ = new Observable((observer: Observer<any>) => {
       observer.next(2);
       observer.next(3);
       setTimeout(() => {
         observer.next(45);
-      }, 2000)
+      }, 2000);
       //   observer.error('Message d erreur');
       observer.next(4);
       observer.complete();
@@ -163,22 +160,22 @@ export class TestBindingComponent implements OnInit, OnDestroy {
 
     const s1 = this.subj.subscribe((x: number) => {
       console.log('[s1]:', x);
-    })
+    });
 
     const s2 = this.subj.subscribe((x: number) => {
       console.log('[s2]:', x);
-    })
+    });
 
     this.subj.next(2);
 
 
     const s3 = this.subj2.subscribe((x: number) => {
       console.log('[s3] : ', x);
-    })
+    });
 
     const s4 = this.subj2.subscribe((x: number) => {
       console.log('[s4] : ', x);
-    })
+    });
 
     this.subj2.next(2021);
 
@@ -191,6 +188,7 @@ export class TestBindingComponent implements OnInit, OnDestroy {
 
   }
 
+  // tslint:disable-next-line:typedef
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.sub2.unsubscribe();
@@ -199,14 +197,16 @@ export class TestBindingComponent implements OnInit, OnDestroy {
   }
 
   public afficheMomentActuel(): string {
-    let auj = new Date();
-    return auj.toLocaleDateString('fr-FR') + " " + auj.toLocaleTimeString();
+    const auj = new Date();
+    return auj.toLocaleDateString('fr-FR') + ' ' + auj.toLocaleTimeString();
   }
 
+  // tslint:disable-next-line:typedef
   public incrementeCompteur() {
     this.compteur++;
   }
 
+  // tslint:disable-next-line:typedef
   deleteOrgane(organe) {
     this.organes.splice(this.organe.indexOf(organe), 1);
   }
