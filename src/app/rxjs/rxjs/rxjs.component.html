@@ -36,7 +36,7 @@
 <br>
 
 
-<p-panel header="tableau commues">
+<p-panel header="tableau communes">
   <p-table [value]="communeList$ | async"
            [columns]="cols"
   >
@@ -50,8 +50,10 @@
     <ng-template pTemplate="body" let-comm>
       <tr>
         <td *ngFor="let col of cols">
-          <p>{{comm[col.field]}}</p>
-
+          <span *ngIf="col.field == 'code'">
+            <a [routerLink]="['/rxjs/' + comm[col.field]]">{{comm[col.field]}}</a>
+          </span>
+          <span *ngIf="col.field != 'code'">{{comm[col.field]}}</span>
         </td>
       </tr>
     </ng-template>
