@@ -23,12 +23,12 @@ getAllRegions(): Observable<RegionModel[]> {
 
 getAllDeptByRegion(codeRegion: string): Observable<DepartementModel[]> {
   return this._http.get<DepartementModel[]>(
-    `$(this.baseUrl)/regions/${codeRegion}/departements`);
+    `${this.baseUrl}/regions/${codeRegion}/departements`);
 }
 
 getAllCommuneByDept(code: string): Observable<CommuneModel[]> {
   return this._http.get<CommuneModel[]>(
-    `$(this.baseUrl)/departements/${code}/communes`);
+    `${this.baseUrl}/departements/${code}/communes`);
 }
 
 
