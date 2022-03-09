@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {delay, filter} from 'rxjs/operators';
+import {concatMap, delay, filter, map} from 'rxjs/operators';
 import {RxjsService} from '../services/rxjs.service';
 import {CommuneModel} from '../model/commune';
 
@@ -16,9 +16,7 @@ export class CommuneDetailComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    // tslint:disable-next-line:variable-name
     private _activatedRoute: ActivatedRoute,
-    // tslint:disable-next-line:variable-name
     private _rxjsService: RxjsService
   ) {
   }
@@ -26,8 +24,10 @@ export class CommuneDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
+
   ngOnInit(): void {
     this.sub.add(
+      /*
       this._activatedRoute.paramMap.pipe(
         delay(2000),
         filter((param: ParamMap) => ![null, undefined].includes(param))
@@ -44,6 +44,26 @@ export class CommuneDetailComponent implements OnInit, OnDestroy {
               }
             }
           );
+        }
+      )
+      */
+      this._activatedRoute.paramMap.pipe(
+        delay(2000),
+        filter((param: ParamMap) => !!param),
+        concatMap((param: ParamMap) =>
+          this._rxjsService.getAllCommuneByDept(
+            param.get('code').substr(0, 2)).pipe(
+            map((communes: CommuneModel[]) => {
+              return {communesObj: communes, paramObj: param};
+            })
+          )
+        )
+      ).subscribe({
+          next: ({communesObj, paramObj}) => {
+            this.selectedCommune = communesObj.find((comm: CommuneModel) =>
+              comm.code === paramObj.get('code')
+            );
+          }
         }
       )
     );
