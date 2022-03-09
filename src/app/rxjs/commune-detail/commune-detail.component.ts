@@ -26,10 +26,7 @@ export class CommuneDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
-
-  // @ts-ignore
   ngOnInit(): void {
-    // @ts-ignore
     this.sub.add(
       this._activatedRoute.paramMap.pipe(
         delay(2000),
