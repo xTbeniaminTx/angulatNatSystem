@@ -13,6 +13,7 @@ import {
 import {
   UserService
 } from '../services/user.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class UserListComponent implements OnInit {
   userService: UserService;
   cols: Partial<{field: string, header: string}>[];
 
-  constructor(userService: UserService) {
+  constructor(userService: UserService,  private _router: Router) {
     this.userService = userService;
   }
 
@@ -51,6 +52,11 @@ export class UserListComponent implements OnInit {
 
   ngOnDestroy() {
     this.userSubscription.unsubscribe();
+  }
+
+  goToDetail(idUser: number): void {
+
+    this._router.navigate([`/update-user/${idUser}`]).then(x => x);
   }
 
 

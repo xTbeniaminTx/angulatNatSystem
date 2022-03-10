@@ -15,6 +15,10 @@ import {RxjsModule} from './rxjs/rxjs/rxjs.module';
 import {AuthGuardService} from './services/auth-guard.service';
 import {UserListComponent} from './user-list/user-list.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import {RxjsComponent} from './rxjs/rxjs/rxjs.component';
+import {CommuneDetailComponent} from './rxjs/commune-detail/commune-detail.component';
+
+
 
 
 const routes: Routes = [{
@@ -39,7 +43,8 @@ const routes: Routes = [{
     component: NewUserComponent
   },
   {
-    path: 'update-user',
+    // path: 'update-user/{id}',
+    path: 'update-user/:id',
     component: UpdateUserComponent
   },
   {

@@ -1,25 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../models/User.model';
 import { UserService } from '../services/user.service';
+import {Subscription} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {CommuneModel} from '../rxjs/model/commune';
 
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
   styleUrls: ['./update-user.component.scss']
 })
-export class UpdateUserComponent implements OnInit {
-  userForm: FormGroup;
-  drinks: string[] = ['late', 'coke', 'lait'];
+export class UpdateUserComponent implements OnInit, OnDestroy {
+  sub: Subscription = new Subscription();
+  id: number;
+  userUpdateForm: FormGroup;
+  drinks: string[];
   hobbies: FormArray[];
+  selectedUser: User;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+  private _activatedRoute: ActivatedRoute,
+  ) { }
+
+
 
   ngOnInit(): void {
+
   }
 
   initForm() {
-    this.userForm = new FormGroup({
+    this.userUpdateForm = new FormGroup({
       firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       lastName: new FormControl('', [Validators.minLength(3)]),
       email: new FormControl('', [Validators.email]),
@@ -28,30 +40,36 @@ export class UpdateUserComponent implements OnInit {
     })
   }
 
-  onSubmitForm() {
-    const formValue = this.userForm.value;
-    const newUser = new User(
-      formValue['firstName'],
-      formValue['lastName'],
-      formValue['email'],
-      formValue['drinkPreference'],
-      formValue['hobbies'] ? formValue['hobbies'] : []
-    );
+  onSubmitForm(id: number) {
+    const formValue = this.userUpdateForm.value;
+    const userToUpdate = this.userService.getUserById(id);
+    // const updateUser = new User(
+    //   formValue['firstName'],
+    //   formValue['lastName'],
+    //   formValue['email'],
+    //   formValue['drinkPreference'],
+    //   formValue['hobbies'] ? formValue['hobbies'] : []
+    // );
 
-    this.userService.addUser(newUser);
-    this.userService.createUser(newUser).subscribe(x => console.log(x));
-    console.log(newUser);
+    // this.userService.updateUser(userToUpdate).subscribe(x => console.log(x));
+    console.log(userToUpdate);
 
   }
 
 
   getHobbies(): FormArray {
-    return this.userForm.get('hobbies') as FormArray;
+    return this.userUpdateForm.get('hobbies') as FormArray;
   }
 
-  onAddHobby() {
-    const newHobbyControl = new FormControl(null, Validators.required);
-    this.getHobbies().push(newHobbyControl);
+  onAddHobby(hobby: string) {
+    this.getHobbies().push(new FormControl(hobby));
+  }
+
+
+
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
 }

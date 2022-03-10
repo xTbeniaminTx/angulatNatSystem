@@ -25,11 +25,12 @@
       <td *ngFor="let col of columns">
          <span *ngIf="col.field == 'id'">
            <!-- <a [routerLink]="['/rxjs/' + comm[col.field]]">{{comm[col.field]}}</a> -->
-<!--          <a (click)="goToDetail(columns[col.field])">-->
-          <a href="">{{rowData[col.field]}}</a>
+          <a (click)="goToDetail(rowData[col.field])">{{rowData[col.field]}}</a>
+<!--          <a href="">{{rowData[col.field]}}</a>-->
 <!--          </a>-->
           </span>
         <span *ngIf="col.field != 'id'">{{rowData[col.field]}}</span>
+
 
 
       </td>
