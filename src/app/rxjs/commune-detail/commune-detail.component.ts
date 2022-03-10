@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {of, Subscription} from 'rxjs';
-import {catchError, concatMap, delay, filter, map} from 'rxjs/operators';
+import {of, Subscription, timer} from 'rxjs';
+import {catchError, concatMap, delay, filter, map, tap} from 'rxjs/operators';
 import {RxjsService} from '../services/rxjs.service';
 import {CommuneModel} from '../model/commune';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -24,13 +24,12 @@ export class CommuneDetailComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-  }
-
-
   ngOnInit(): void {
+
     this._rxjsService.setMySubject$('Vincent');
+    // this._rxjsService.setSpinnerSubjects$(true);
+    // delay(2000);
+    // this._rxjsService.setSpinnerSubjects$(false);
     this._rxjsService.getMySubject$().subscribe({
       next: (val) => console.log('subject', val)
     });
@@ -62,21 +61,26 @@ export class CommuneDetailComponent implements OnInit, OnDestroy {
       this._activatedRoute.paramMap.pipe(
         delay(2000),
         filter((param: ParamMap) => !!param),
-        concatMap((param: ParamMap) =>
-          this._rxjsService.getAllCommuneByDept(
-            param.get('code').substr(0, 2)).pipe(
-            map((communes: CommuneModel[]) => {
-              return {communesObj: communes, paramObj: param};
-            })
-          )
+        concatMap((param: ParamMap) => {
+
+            return this._rxjsService.getAllCommuneByDept(
+              param.get('code').substr(0, 2)).pipe(
+              map((communes: CommuneModel[]) => {
+                return {communesObj: communes, paramObj: param};
+              })
+            );
+          }
         ),
         catchError((err: HttpErrorResponse) => {
             console.error(err.message);
             throw of(err);
           }
-        )
+        ),
       ).subscribe({
+
+
           next: ({communesObj, paramObj}) => {
+
             this.selectedCommune = communesObj.find((comm: CommuneModel) =>
               comm.code === paramObj.get('code')
             );
@@ -84,5 +88,10 @@ export class CommuneDetailComponent implements OnInit, OnDestroy {
         }
       )
     );
+  }
+
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

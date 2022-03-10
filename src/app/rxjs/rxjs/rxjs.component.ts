@@ -54,6 +54,7 @@ export class RxjsComponent implements OnInit {
   }
 
   goToDetail(codeCommune: string): void {
+
     this._router.navigate([`/rxjs/${codeCommune}`]).then(x => x);
   }
 

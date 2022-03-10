@@ -14,6 +14,7 @@ import {NewUserComponent} from './new-user/new-user.component';
 import {RxjsModule} from './rxjs/rxjs/rxjs.module';
 import {AuthGuardService} from './services/auth-guard.service';
 import {UserListComponent} from './user-list/user-list.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 
 const routes: Routes = [{
@@ -36,6 +37,10 @@ const routes: Routes = [{
   {
     path: 'new-user',
     component: NewUserComponent
+  },
+  {
+    path: 'update-user',
+    component: UpdateUserComponent
   },
   {
     path: 'rxjs',

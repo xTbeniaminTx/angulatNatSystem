@@ -89,6 +89,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {RxjsModule} from './rxjs/rxjs/rxjs.module';
 import { CommuneDetailComponent } from './rxjs/commune-detail/commune-detail.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 
 @NgModule({
@@ -108,7 +109,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     ErrorComponent,
     UserListComponent,
     NewUserComponent,
-    CommuneDetailComponent
+    CommuneDetailComponent,
+    UpdateUserComponent
 
   ],
     imports: [
