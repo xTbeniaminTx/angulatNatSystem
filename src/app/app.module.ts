@@ -88,6 +88,7 @@ import {ButtonModule} from 'primeng/button';
 import {AppRoutingModule} from './app-routing.module';
 import {RxjsModule} from './rxjs/rxjs/rxjs.module';
 import { CommuneDetailComponent } from './rxjs/commune-detail/commune-detail.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -110,21 +111,22 @@ import { CommuneDetailComponent } from './rxjs/commune-detail/commune-detail.com
     CommuneDetailComponent
 
   ],
-  imports: [
-    BrowserModule,
-    PanelModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    InputTextModule,
-    DropdownModule,
-    TableModule,
-    HttpClientModule,
-    ButtonModule,
-    AppRoutingModule
+    imports: [
+        BrowserModule,
+        PanelModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        InputTextModule,
+        DropdownModule,
+        TableModule,
+        HttpClientModule,
+        ButtonModule,
+        AppRoutingModule,
+        ProgressSpinnerModule
 
 
-  ],
+    ],
   providers: [
     PanierService,
     UserService,

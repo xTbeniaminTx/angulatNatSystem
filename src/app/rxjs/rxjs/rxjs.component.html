@@ -51,7 +51,8 @@
       <tr>
         <td *ngFor="let col of cols">
           <span *ngIf="col.field == 'code'">
-            <a [routerLink]="['/rxjs/' + comm[col.field]]">{{comm[col.field]}}</a>
+           <!-- <a [routerLink]="['/rxjs/' + comm[col.field]]">{{comm[col.field]}}</a> -->
+          <a (click)="goToDetail(comm[col.field])">{{comm[col.field]}}</a>
           </span>
           <span *ngIf="col.field != 'code'">{{comm[col.field]}}</span>
         </td>

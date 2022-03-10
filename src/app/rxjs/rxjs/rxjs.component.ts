@@ -5,6 +5,7 @@ import {RegionModel} from '../model/region.model';
 import {DepartementModel} from '../model/departement.model';
 import {CommuneModel} from '../model/commune';
 import {map} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-rxjs',
@@ -26,7 +27,9 @@ export class RxjsComponent implements OnInit {
 
   constructor(
     // tslint:disable-next-line:variable-name
-    private _rxjsService: RxjsService
+    private _rxjsService: RxjsService,
+    // tslint:disable-next-line:variable-name
+    private _router: Router
   ) {
   }
 
@@ -48,6 +51,10 @@ export class RxjsComponent implements OnInit {
       )
     )
     ;
+  }
+
+  goToDetail(codeCommune: string): void {
+    this._router.navigate([`/rxjs/${codeCommune}`]).then(x => x);
   }
 
 }
