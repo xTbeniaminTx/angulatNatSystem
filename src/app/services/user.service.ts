@@ -1,4 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import {
+  HttpClient
+} from '@angular/common/http';
 import {
   Injectable
 } from '@angular/core';
@@ -6,7 +8,9 @@ import {
   Observable,
   Subject
 } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import {
+  environment
+} from 'src/environments/environment';
 import {
   User
 } from '../models/User.model';
@@ -17,13 +21,13 @@ import {
 })
 export class UserService {
 
-  baseUrlUser= environment.user;
+  baseUrlUser = environment.user;
 
   constructor(private http: HttpClient) {}
 
   users: User[] = [
-    new User('Bob', 'bobina', 'bobina@will.com', 'café latte', ['coder', 'boire du cafe latte']),
-    new User('Bob', 'L\'Eponge', 'bob@will.com', 'café latte', ['decoder', 'boire du cafe latte'])
+    new User(1, 'Bob', 'bobina', 'bobina@will.com', 'café latte', ['coder', 'boire du cafe latte']),
+    new User(2, 'Bob', 'L\'Eponge', 'bob@will.com', 'café latte', ['decoder', 'boire du cafe latte'])
   ];
   userSubject = new Subject < User[] > ();
 
@@ -36,12 +40,12 @@ export class UserService {
     this.emitUsers();
   }
 
-  getUserList(): Observable<User[]> {
-    return this.http.get(this.baseUrlUser+'') as Observable<User[]>;
+  getUserList(): Observable < User[] > {
+    return this.http.get(this.baseUrlUser + '') as Observable < User[] > ;
   }
 
-  createUser(user: User): Observable<User> {
-    return this.http.post(this.baseUrlUser ,user) as Observable<User>;
+  createUser(user: User): Observable < User > {
+    return this.http.post(this.baseUrlUser, user) as Observable < User > ;
   }
 
 }

@@ -23,8 +23,15 @@
   <ng-template pTemplate="body" let-rowData let-columns="columns">
     <tr>
       <td *ngFor="let col of columns">
-        <p>{{rowData[col.field]}}</p>
-       
+         <span *ngIf="col.field == 'id'">
+           <!-- <a [routerLink]="['/rxjs/' + comm[col.field]]">{{comm[col.field]}}</a> -->
+<!--          <a (click)="goToDetail(columns[col.field])">-->
+          <a href="">{{rowData[col.field]}}</a>
+<!--          </a>-->
+          </span>
+        <span *ngIf="col.field != 'id'">{{rowData[col.field]}}</span>
+
+
       </td>
     </tr>
   </ng-template>

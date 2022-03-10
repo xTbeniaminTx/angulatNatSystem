@@ -41,6 +41,7 @@ export class UserListComponent implements OnInit {
     this.users$ = this.userService.getUserList();
 
     this.cols = [
+      {field: 'id', header: 'ID'},
       {field: 'firstName', header: 'Prenom'},
       {field: 'lastName', header: 'Nom'},
       {field: 'email', header: 'Email'},
