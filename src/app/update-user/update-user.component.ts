@@ -1,10 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from '../models/User.model';
-import { UserService } from '../services/user.service';
-import {Subscription} from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {User} from '../models/User.model';
+import {UserService} from '../services/user.service';
+import {Observable, of, Subscription} from 'rxjs';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 import {CommuneModel} from '../rxjs/model/commune';
+import {catchError, concatMap, delay, filter, map} from 'rxjs/operators';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-update-user',
@@ -13,20 +15,54 @@ import {CommuneModel} from '../rxjs/model/commune';
 })
 export class UpdateUserComponent implements OnInit, OnDestroy {
   sub: Subscription = new Subscription();
-  id: number;
+  id: string;
   userUpdateForm: FormGroup;
   drinks: string[];
   hobbies: FormArray[];
-  selectedUser: User;
+  selectedUser: Observable<User>;
+  selectedUserObj: User;
 
   constructor(
     private userService: UserService,
-  private _activatedRoute: ActivatedRoute,
-  ) { }
-
+    private _activatedRoute: ActivatedRoute,
+  ) {
+  }
 
 
   ngOnInit(): void {
+    this.sub.add(
+      this._activatedRoute.paramMap.pipe(
+        delay(2000),
+        filter((param: ParamMap) => !!param),
+        concatMap((param: ParamMap) => {
+
+            return this.userService.getUserById(
+              param.get('id')).pipe(
+              map((user: User) => {
+                return {userObj: user, paramObj: param};
+              })
+            );
+          }
+        ),
+        catchError((err: HttpErrorResponse) => {
+            console.error(err.message);
+            throw of(err);
+          }
+        ),
+      ).subscribe({
+
+
+          next: ({userObj, paramObj}) => {
+            this.id = paramObj.get('id');
+            this.selectedUser = this.userService.getUserById(paramObj.get('id'));
+            this.selectedUser.subscribe(
+              user => {
+                this.selectedUserObj = user;
+              });
+          }
+        }
+      )
+    );
 
   }
 
@@ -34,15 +70,15 @@ export class UpdateUserComponent implements OnInit, OnDestroy {
     this.userUpdateForm = new FormGroup({
       firstName: new FormControl('', [Validators.required, Validators.minLength(3)]),
       lastName: new FormControl('', [Validators.minLength(3)]),
-      email: new FormControl('', [Validators.email]),
-      drinkPreference: new FormControl(this.drinks),
+      email: new FormControl('',),
+      drinkPreference: new FormControl(''),
       hobbies: new FormArray([])
-    })
+    });
   }
 
-  onSubmitForm(id: number) {
+  onSubmitForm() {
     const formValue = this.userUpdateForm.value;
-    const userToUpdate = this.userService.getUserById(id);
+    const userToUpdate = this.userService.getUserById(this.id);
     // const updateUser = new User(
     //   formValue['firstName'],
     //   formValue['lastName'],
@@ -54,18 +90,14 @@ export class UpdateUserComponent implements OnInit, OnDestroy {
     // this.userService.updateUser(userToUpdate).subscribe(x => console.log(x));
     console.log(userToUpdate);
 
+    this.userService.updateUser(this.id).subscribe(x => console.log(x));
+
   }
 
 
-  getHobbies(): FormArray {
-    return this.userUpdateForm.get('hobbies') as FormArray;
-  }
-
-  onAddHobby(hobby: string) {
-    this.getHobbies().push(new FormControl(hobby));
-  }
-
-
+  // onAddHobby(hobby: string) {
+  //   this.getHobbies().push(new FormControl(hobby));
+  // }
 
 
   ngOnDestroy(): void {

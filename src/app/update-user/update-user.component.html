@@ -1,12 +1,12 @@
 <div class="col-sm-8 col-sm-offset-2">
-  <form [formGroup]="userUpdateForm" (ngSubmit)="onSubmitForm(id)">
+  <form [formGroup]="userUpdateForm" (ngSubmit)="onSubmitForm()">
     <div class="form-group">
       <label for="firstName">Prénom</label>
-      <input type="text" id="firstName" class="form-control" formControlName="firstName">
+      <input type="text" [value]="selectedUserObj.firstName" id="firstName" class="form-control" formControlName="firstName">
     </div>
     <div class="form-group">
       <label for="lastName">Nom</label>
-      <input type="text" id="lastName" class="form-control" formControlName="lastName">
+      <input type="text" id="lastName" [value]="selectedUserObj.lastName" class="form-control" formControlName="lastName">
     </div>
     <div class="form-group">
       <label for="email">Adresse e-mail</label>
@@ -16,10 +16,10 @@
       <label for="email">Boisson préférée</label>
       <input type="text" id="drinkPreference" class="form-control" formControlName="drinkPreference">
     </div>
-    <div class="form-group" *ngFor="let hobby of getHobbies().controls; let i = index">
-      <label for="hobbies">hobby n°{{i+1}}</label>
-      <input type="text" id="hobbies" class="form-control"  [formControlName]="i">
-    </div>
+<!--    <div class="form-group" *ngFor="let hobby of getHobbies().controls; let i = index">-->
+<!--      <label for="hobbies">hobby n°{{i+1}}</label>-->
+<!--      <input type="text" id="hobbies" class="form-control"  [formControlName]="i">-->
+<!--    </div>-->
     <button type="submit" class="btn btn-primary">Modifier</button>
   </form>
 </div>

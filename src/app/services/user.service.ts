@@ -28,8 +28,8 @@ export class UserService {
   }
 
   users: User[] = [
-    new User(1, 'Bob', 'bobina', 'bobina@will.com', 'café latte', ['coder', 'boire du cafe latte']),
-    new User(2, 'Bob', 'L\'Eponge', 'bob@will.com', 'café latte', ['decoder', 'boire du cafe latte'])
+    new User('1', 'Bob', 'bobina', 'bobina@will.com', 'café latte', ['coder', 'boire du cafe latte']),
+    new User('2', 'Bob', 'L\'Eponge', 'bob@will.com', 'café latte', ['decoder', 'boire du cafe latte'])
   ];
   userSubject = new Subject<User[]>();
 
@@ -52,14 +52,15 @@ export class UserService {
 
   // méthode effectuant une requête HTTP permettant de récupérer un user
   // @ts-ignore
-  getUserById(id: number): Observable<User> {
-    return this.http.get(this.baseUrlUser + 'id') as Observable<User>;
+  getUserById(id: string): Observable<User> {
+    return this.http.get(this.baseUrlUser ) as Observable<User>;
   }
 
   // méthode effectuant une requête HTTP permettant de mettre à jour un user
   // @ts-ignore
-  updateUser(user: User): Observable<User>  {
-    return this.http.patch(this.baseUrlUser, user) as Observable<User>;
+  updateUser(id): Observable<User>  {
+    // @ts-ignore
+    return this.http.patch(this.baseUrlUser + '/' + id) as unknown as Observable<User>;
   }
 
 
